@@ -1,4 +1,4 @@
-# Tic-Tac-Toe Game
+# Tic-Tac-Toe game
 
 This project implements a simple Tic Tac Toe game using Spring Boot. <br/>
 The game is designed to run two instances of the application which communicate with each other via REST APIs to play the game.
