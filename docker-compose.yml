@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  svc_player1:
+    image: tic-tac-toe:latest
+    container_name: player1
+    depends_on:
+      - redis
+    ports:
+      - "8081:8080"
+    environment:
+      - PLAYER_ID=ivan
+      - PLAYER_FIXED_RATE=5000
+      - OPPONENT_PLAYER_URL=http://svc_player2:8080
+      - SPRING_DATA_REDIS_HOST=redis
+    networks:
+      - tic-tac-toe-network
+
+  svc_player2:
+    image: tic-tac-toe:latest
+    container_name: player2
+    depends_on:
+      - redis
+    ports:
+      - "8082:8080"
+    environment:
+      - PLAYER_ID=sergey
+      - PLAYER_FIXED_RATE=7000
+      - OPPONENT_PLAYER_URL=http://svc_player1:8080
+      - SPRING_DATA_REDIS_HOST=redis
+    networks:
+      - tic-tac-toe-network
+
+  redis:
+    image: "redis:latest"
+    container_name: "redis"
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - tic-tac-toe-network
+
+networks:
+  tic-tac-toe-network:
+    driver: bridge

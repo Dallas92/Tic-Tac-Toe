@@ -1,0 +1,33 @@
+spring:
+    application:
+        name: tic-tac-toe player
+    data:
+        redis:
+            host: localhost
+            port: 6379
+    cloud:
+        openfeign:
+            client:
+                config:
+                    playerClient:
+                        url: ${OPPONENT_PLAYER_URL}
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info
+    info:
+        env:
+            enabled: true
+
+springdoc:
+    packagesToScan: com.example.tic_tac_toe.controller
+
+player:
+    id: ${PLAYER_ID}
+    fixedRate: ${PLAYER_FIXED_RATE}
+
+logging:
+    level:
+        root: info
