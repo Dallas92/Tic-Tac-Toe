@@ -1,9 +1,8 @@
 package com.example.tic_tac_toe.constant;
 
 import com.example.tic_tac_toe.model.api.GameStatus;
-import lombok.experimental.UtilityClass;
-
 import java.util.List;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class CommonConstants {
