@@ -11,8 +11,8 @@ public class TicTacToeBoardUtil {
   public int[] getRandomFreeCell(char[][] board) {
     while (true) {
       Random random = new Random();
-      int row = random.nextInt(2);
-      int col = random.nextInt(2);
+      int row = random.nextInt(3);
+      int col = random.nextInt(3);
 
       if (board[row][col] == EMPTY_BOARD_CELL) {
         return new int[] {row, col};
