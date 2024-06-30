@@ -25,7 +25,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(GameTurnException.class)
   public ResponseEntity<ErrorResponse> handleResourceNotFoundException(GameTurnException ex) {
-    return generateError(ex.getMessage(), HttpStatus.CONFLICT);
+    return generateError(ex.getMessage(), HttpStatus.FORBIDDEN);
   }
 
   @ExceptionHandler(GameBoardCellIsAlreadyFilledException.class)

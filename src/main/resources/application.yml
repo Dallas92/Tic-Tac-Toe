@@ -26,7 +26,7 @@ springdoc:
 
 player:
     id: ${PLAYER_ID}
-    fixedRate: ${PLAYER_FIXED_RATE}
+    fixedRate: ${PLAYER_FIXED_RATE:4000}
 
 logging:
     level:

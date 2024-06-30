@@ -21,8 +21,8 @@ import org.springframework.stereotype.Service;
 public class TicTacToeServiceImpl implements TicTacToeService {
 
   public static final char EMPTY_BOARD_CELL = '-';
-  private static final char PLAYER1_BOARD_CELL = 'o';
-  private static final char PLAYER2_BOARD_CELL = 'x';
+  public static final char PLAYER1_BOARD_CELL = 'o';
+  public static final char PLAYER2_BOARD_CELL = 'x';
 
   @Override
   public GameInfoDto createGame(String player1Id, String player2Id) {
@@ -44,6 +44,7 @@ public class TicTacToeServiceImpl implements TicTacToeService {
   public GameInfoDto makeAction(GameInfoDto gameInfo, UpdateGameRequest request) {
     validate(gameInfo, request);
     fillCell(gameInfo, request);
+    checkBoard(gameInfo);
     return gameInfo;
   }
 
@@ -95,8 +96,6 @@ public class TicTacToeServiceImpl implements TicTacToeService {
 
     gameInfo.setVersion(gameInfo.getVersion() + 1);
 
-    checkBoard(gameInfo);
-
     return gameInfo;
   }
 
@@ -125,9 +124,9 @@ public class TicTacToeServiceImpl implements TicTacToeService {
   private void checkForNoPlayerWinner(GameInfoDto gameInfoDto) {
     if (gameInfoDto.getStatus().equals(GameStatus.IN_PROGRESS)) {
       boolean draw = true;
-      for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-          if (generateBoard()[i][j] == EMPTY_BOARD_CELL) {
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if (gameInfoDto.getBoard()[i][j] == EMPTY_BOARD_CELL) {
             draw = false;
             break;
           }
