@@ -57,4 +57,4 @@ Run `mvn fmt:format` command before making any commit to GIT
 
 Import Postman collection to send requests to application.
 
-Use GET /api/games endpoints for monitoring progress of all games
+Use `GET /api/games` endpoint for monitoring progress of all games
